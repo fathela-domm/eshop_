@@ -1,0 +1,14 @@
+{% extends 'user/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<span class="login100-form-title p-b-43">
+    User Registration
+</span>
+<form class="needs-validation" method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3" style="margin-left: -20px;">
+        {{ form|crispy }}
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+    </div>
+</form>
+{% endblock %}

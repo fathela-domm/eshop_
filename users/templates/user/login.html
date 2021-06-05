@@ -1,0 +1,20 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<span class="login100-form-title p-b-43">
+    User Login
+</span>
+<form action="" method="POST" class="form">
+    {% csrf_token %}
+    {{form|crispy}}
+    {% block c %}
+    <input type="submit" class="btn btn-primary" style="width: 100%;" value="Submit">
+    <small class="mt-5">
+        Not Registered?<a class="text-primary" href="/accounts/register"> Register</a><br>
+        Forgot Password?<a class="text-primary" href="/accounts/password_reset"> Recover via Email</a><br>
+    </small>
+    {% endblock %}
+</form>
+
+{% endblock %}

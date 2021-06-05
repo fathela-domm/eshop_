@@ -1,0 +1,66 @@
+{% extends 'admin_templates/ui_ux/tables.html' %}
+{% load crispy_forms_tags %}
+{% block update %}
+<section id="basic-alerts">
+    <div class="row match-height">
+        <div class="col-lg-8" style="margin: auto;">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">{{subtitle}}</h4>
+                    <a class="heading-elements-toggle">
+                        <i class="la la-ellipsis-v font-medium-3"></i>
+                    </a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                            <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body" style="max-height: 470px; overflow-y: auto;">
+                        {% block form %}
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            {{form|crispy}}
+                            <div class="btn-group col-12 row" style="display: flex; justify-content: space-between;">
+                                <button type="submit" class="btn btn-primary col-auto">Submit</button>
+                                <a href="/admin">
+                                    <button type="button" class="btn btn-default">Go Back</button>
+                                </a>
+                            </div>
+                        </form>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    (function () {
+        const helpText = document.querySelector("#hint_id_duration") || null;
+        const promoDuration = document.querySelector(".promo-duration");
+
+        promoDuration.addEventListener("input", function () {
+            const promoDurationValue = document.querySelector(".promo-duration").value;
+
+            const promoDurationMinutes = Math.floor(promoDurationValue / 60);
+            const promoDurationHours = Math.floor(promoDurationMinutes / 60);
+            const promoDurationDays = Math.floor(promoDurationHours / 24);
+            const promoDurationMonths = Math.floor(promoDurationDays / 30);
+
+            helpText.innerHTML = `${promoDurationMonths}Months : ${promoDurationDays}Days : ${promoDurationHours}${promoDurationMinutes}Minutes : ${promoDurationValue}Seconds`;
+        });
+    })();
+
+</script>
+
+{% endblock %}
+
+{% include "ui_ux/admin_dashboard/footer.html" %}
+<script src="../../static/theme-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+<script src="../../static/theme-assets/js/core/app-menu-lite.js" type="text/javascript"></script>
+<script src="../../static/theme-assets/js/core/app-lite.js" type="text/javascript"></script>

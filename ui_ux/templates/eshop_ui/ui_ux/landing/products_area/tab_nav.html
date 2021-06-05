@@ -1,0 +1,12 @@
+{% load static %}
+<!-- Tab Nav -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+	{% for category in categories %}
+	{% if forloop.counter <= 5 %}
+    <li class="nav-item">
+    	<a class="nav-link active tabCategory"  data-toggle="tab" href="#" role="tab">{{category }}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>
+<!--/ End Tab Nav -->

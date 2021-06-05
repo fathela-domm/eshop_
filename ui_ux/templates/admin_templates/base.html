@@ -1,0 +1,56 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="blog template">
+    <meta name="author" content="Kamau Dommy Fathela">
+
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{%static 'css/styles.css'%}" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
+
+    <script src='{%static "js/babel.min.js"%}'></script>
+    <script src='{%static "js/jquery.js"%}'></script>
+    <script src="{% static 'js/react.development.js' %}"></script>
+    <script src="{% static 'js/react-dom.development.js' %}"></script>
+
+    <script async src="../../../static/api/LoadApi.js"></script>
+    <script async src="../../../static/api/updateData.js"></script>
+    <script async src="../../../static/api/postDataToApi.js"></script>
+    <script async src="../../../static/api/delData.js"></script>
+    <title>Admin Dashboard</title>
+
+    <meta name="keywords"
+        content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
+    <title>Buttons - Chameleon Admin - Modern Bootstrap 4 WebApp & Dashboard HTML Template + UI Kit</title>
+    <link
+        href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/theme-assets/css/vendors.css">
+    <link rel="stylesheet" type="text/css" href="../static/theme-assets/css/app-lite.css">
+    <link rel="stylesheet" type="text/css" href="../static/theme-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="../static/theme-assets/css/core/colors/palette-gradient.css">
+    <link rel="stylesheet" type="text/css" href="../static/theme-assets/vendors/css/charts/chartist.css">
+    <link rel="stylesheet" type="text/css" href="../static/theme-assets/css/pages/dashboard-ecommerce.css">
+    <link href="../static/assets/css/line-awesome.css" rel="stylesheet">
+
+    <link rel="apple-touch-icon" href="../static/theme-assets/theme-assets/images/ico/apple-icon-120.png">
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="../static/images/logo.jpg"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="../static/theme-assets/images/ico/favicon.ico">
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700"
+        rel="stylesheet">
+</head>
+
+<body class="vertical-layout vertical-menu 2-columns menu-expanded fixed-navbar" data-open="click"
+    data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
+    {% block content %}{% endblock %}
+    <div id="root"></div>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+{% extends 'admin_templates/ui_ux/tables/update_data.html' %}
+{% load crispy_forms_tags %}
+{% block form %}
+<div class="card-content mb-3">
+    <h3 class="text-warning ml-1">Are You sure you want to delete this item?</h3>
+</div>
+<div class="row justify-content-between">
+    <form action="" method="POST" action="/admin" data-method="DELETE">
+        {% csrf_token %}
+        <input type="submit" value="DELETE" class="btn btn-danger">
+    </form>
+    <a href="/admin">
+        <button class="btn btn-default">Cancel</button>
+    </a>
+</div>
+{% endblock %}

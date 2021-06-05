@@ -1,0 +1,23 @@
+{% extends 'admin_templates/base.html' %}
+{% block content %}
+
+{% include 'admin_templates/ui_ux/admin_dashboard/navbar.html' %}
+{% include 'admin_templates/ui_ux/admin_dashboard/modal.html' %}
+<main class="main-content">
+    {% include 'admin_templates/ui_ux/admin_dashboard/menu.html' %}
+    {% include 'admin_templates/ui_ux/charts/chart_content.html' %}
+    {% include 'admin_templates/ui_ux/admin_dashboard/footer.html' %}
+</main>
+<script src="../../static/theme-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+<script src="../../static/theme-assets/vendors/js/charts/chart.min.js" type="text/javascript"></script>
+<script src="../../static/theme-assets/js/core/app-menu-lite.js" type="text/javascript"></script>
+<script src="../../static/theme-assets/js/core/app-lite.js" type="text/javascript"></script>
+<script src="../../static/theme-assets/js/scripts/charts/chartjs/bar/column.js" type="text/javascript"></script>
+<script src="../../static/theme-assets/js/scripts/charts/chartjs/bar/bar.js" type="text/javascript"></script>
+<script src="../../static/theme-assets/js/scripts/charts/chartjs/line/line.js" type="text/javascript"></script>
+<script src="../../static/theme-assets/js/scripts/charts/chartjs/pie-doughnut/pie-simple.js"
+    type="text/javascript"></script>
+<script src="../../static/theme-assets/js/scripts/charts/chartjs/pie-doughnut/doughnut-simple.js"
+    type="text/javascript"></script>
+
+{% endblock %}

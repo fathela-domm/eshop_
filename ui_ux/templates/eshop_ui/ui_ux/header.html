@@ -1,0 +1,153 @@
+{% load static %}
+<header class="header shop">
+    <div class="middle-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-12">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <a href="/"><img src="../../../static/images/logo.png" alt="logo"></a>
+                    </div>
+                    <!--/ End Logo -->
+                    <!-- Search Form -->
+                    <div class="search-top">
+                        <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+                        <!-- Search Form -->
+                        <div class="search-top">
+                            <form autocomplete="off" class="search-form">
+                                <input hidden autocomplete="false" type="text" class="hidden">
+                                <input class="searchInputForMobile" type="text" placeholder="Search here..."
+                                    name="search">
+                                <button value="search" type="submit"><i class="ti-search"></i></button>
+                                <div style="position: absolute; max-height: 300px; overflow: auto; z-index:9"
+                                    id="searchSuggestionsForMobile"></div>
+                            </form>
+                        </div>
+                        <!--/ End Search Form -->
+                    </div>
+                    <!--/ End Search Form -->
+                    <div class="mobile-nav"></div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-12">
+                    <div class="search-bar-top">
+                        <div class="search-bar">
+                            <select>
+                                <option selected="selected">All Categories</option>
+                                {% for category in categories %}
+                                <option>{{ forloop.counter }}. {{ category.category }}</option>
+                                {% endfor %}
+                            </select>
+                            <form autocomplete="off">
+                                <input hidden autocomplete="false" type="text" class="hidden">
+                                <input class="searchInputForComps" id="searchInput" name="search"
+                                    placeholder="Search Products Here....." type="search">
+                                <button class="btnn"><i class="ti-search"></i></button>
+                                <div style="position: absolute; max-height: 500px; overflow: auto; z-index: 9;"
+                                    id="searchSuggestions"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-12">
+                    <div class="right-bar">
+                        <!-- Search Form -->
+                        <!-- <div class="sinlge-bar">
+                            <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                        </div>-->
+                        <div id="usersCartComponent">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Inner -->
+    <div class="header-inner">
+        <div class="container">
+            <div class="cat-nav-head">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="all-category">
+                            <h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
+                            <ul class="main-category">
+                                <li><a href="#">New Arrivals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    <ul class="sub-category">
+                                        {% for category in categories %}
+                                        <li><a href="#">{{category.category}}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                <li class="main-mega"><a href="#">best selling <i class="fa fa-angle-right"
+                                            aria-hidden="true"></i></a>
+                                    <ul class="mega-menu">
+                                        {% for product in products %}
+                                        {% if forloop.counter < 10 %}
+                                        <li class="single-menu">
+                                            <a href="#" class="title-link">Shop {{product.category}}</a>
+                                            <div class="image">
+                                                <img style="height: 200px; width: 100px;" src="{{product.image.url}}"
+                                                    alt="#">
+                                            </div>
+                                            <div class="inner-link">
+                                                <a href="#">{{product.name}}</a>
+                                            </div>
+                                        </li>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                {% for category in categories %}
+                                <li><a href="#">{{category.category}}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-12">
+                        <div class="menu-area">
+                            <!-- Main Menu -->
+                            <nav class="navbar navbar-expand-lg">
+                                <div class="navbar-collapse">
+                                    <div class="nav-inner">
+                                        <ul class="nav main-menu menu navbar-nav">
+                                            <li class="active"><a href="/">Home</a></li>
+                                            <li><a href="/shopGrid">Shop<i class="ti-angle-down"></i><span
+                                                        class="new">New</span></a>
+                                                <ul class="dropdown">
+                                                    <li><a href="/shopGrid">Shop Grid</a></li>
+                                                    <li><a href="/cart">Cart</a></li>
+                                                    <li><a href="/checkout/{{request.user.id}}">Checkout</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Pages</a></li>
+                                            <li><a href="#">Our Services</a></li>
+                                            {% if request.user.is_authenticated and request.user.is_staff%}
+                                            <li><a href="{% url 'admin_dashboard' %}">Admin
+                                                    Dashboard</a>
+                                            </li>
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+
+                                            {%elif request.user.is_authenticated%}
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                                            {%endif%}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                            <!--/ End Main Menu -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ End Header Inner -->
+</header>
+
+<script type="text/babel" src="{% static 'jsx/searchSuggestions.jsx' %}"></script>
+<script type="text/babel" src="{% static 'jsx/usersCartHeader.jsx' %}"></script>
+<script type="text/babel">
+    renderSearchSuggestions();
+    searchSuggestionsForMobile();
+    renderUserCartComponent("{{csrf_token}}", "{{request.user.id}}");
+</script>

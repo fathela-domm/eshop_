@@ -1,0 +1,44 @@
+{% extends 'admin_templates/base.html' %}
+{% block content %}
+
+{% include 'admin_templates/ui_ux/admin_dashboard/navbar.html' %}
+{% include 'admin_templates/ui_ux/admin_dashboard/modal.html' %}
+<main class="main-content">
+    {% include 'admin_templates/ui_ux/admin_dashboard/menu.html' %}
+    <div class="app-content content">
+        <div class="content-wrapper">
+            <div class="content-wrapper-before"></div>
+            <div class="content-header row">
+                <div class="content-header-left col-md-4 col-12 mb-2">
+                    <h3 class="content-header-title">{{title}}</h3>
+                </div>
+                <div class="content-header-right col-md-8 col-12">
+                    <div class="breadcrumbs-top float-md-right">
+                        <div class="breadcrumb-wrapper mr-1">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href='{% url "admin_dashboard"  %}'>Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">Tables
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-body">
+                {% block update %}
+                {% include 'admin_templates/ui_ux/tables/all_users.html' %}
+                {% include 'admin_templates/ui_ux/tables/all_products.html' %}
+                {% include 'admin_templates/ui_ux/tables/categories.html' %}
+                {% include 'admin_templates/ui_ux/tables/products_bought.html' %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    {% load static %}
+    {% include "admin_templates/ui_ux/admin_dashboard/footer.html" %}
+    <script src="../../static/theme-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+    <script src="../../static/theme-assets/js/core/app-menu-lite.js" type="text/javascript"></script>
+    <script src="../../static/theme-assets/js/core/app-lite.js" type="text/javascript"></script>
+</main>
+{% endblock %}

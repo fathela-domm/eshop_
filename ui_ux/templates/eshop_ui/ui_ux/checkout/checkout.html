@@ -1,0 +1,72 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<!-- Start Checkout -->
+<section class="shop checkout section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12 pl-2">
+                <div class="checkout-form ml-3">
+                    <h2>Make Your Checkout Here</h2>
+                    <p>Please check your info before checking out</p>
+                    <!-- Form -->
+                    <form action="" class="form ml-4" method="POST">
+                        {% csrf_token %}
+                        {{form | crispy}}
+                    </form>
+                    <!--/ End Form -->
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="order-details">
+                    <!-- Order Widget -->
+                    <div class="single-widget">
+                        <h2>CART TOTALS</h2>
+                        <div class="content" id="CartSummary">
+
+                        </div>
+                    </div>
+                    <!--/ End Order Widget -->
+                    <!-- Button Widget -->
+                    <div class="single-widget get-button">
+                        <div class="content">
+                            <div class="button" id="checkOut">
+                                <a href="#" class="btn">Proceed</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ End Button Widget -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Checkout -->
+
+<script type="text/babel" src="{% static 'jsx/shoppingCart.jsx' %}"></script>
+<script type="text/babel">
+    ReactDOM.render(<CartSummary />, document.getElementById("CartSummary"));
+
+    document.getElementById("checkOut").addEventListener("click", () => {
+        let usersCart = [];
+        useLoadWholeApi("").then(res => {
+            let cartProductsArray = [];
+            res.carts.map((cart) => {
+                cart.user == "{{request.user.id}}" && usersCart.push(cart)
+            });
+            console.log(usersCart);
+            usersCart.map(cart => {
+                const dataToPost = {
+                    "quantity_to_purchase": cart.quantity_to_purchase,
+                    "quantity_issued": 0,
+                    "issued": false,
+                    "product": cart.product_info[0].id,
+                    "buyer": "{{request.user.id}}",
+                    "issued_by": null,
+                }
+                postDataToAPI(dataToPost, "{{csrf_token}}", "create_product_bought").then(res => {
+                    deleteDataFromApi("cart/del", cart.id, "{{csrf_token}}")
+                }).then(res => window.location.assign("/contact")).catch(e => console.error(e));
+            });
+        })
+    });
+</script>

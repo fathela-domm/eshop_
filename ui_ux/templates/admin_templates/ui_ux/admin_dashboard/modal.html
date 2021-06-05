@@ -1,0 +1,61 @@
+{% load static %}
+<div class="modal fade modal-dialog-centered ml-4" id="updateUserInfo" style="display: none;" id="userInfo"
+    tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog col-sm-12">
+        <div class="modal-content">
+            <div class="modal-header border-bottom">
+                <div class="modal-title">
+                    <div class="">
+                        <div class="arrow_box_right">
+                            <a class="flex-row justify-content-between" href="#">
+                                <span class="avatar avatar-online">
+                                    <img src="{%static 'images/default.png'%}" style="border-radius: 50%;" alt="avatar">
+                                    <span class="user-name text-bold-700 ml-1">{{request.user.username}}</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body border-bottom">
+                <div class="card-body" id="modalForm">
+                    <!--a jsx form is rendered here -->
+                </div>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-center" href="#"><i class="ft-power"></i>Logout</a>
+            </div>
+            <div class="modal-footer col-sm-12 flex-row justify-content-between">
+                <button type="button" class="btn btn-default cancel-btn" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary submit-new-user-info">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% load static %}
+<!-- script containing jsx to render the user-profile form in the modal -->
+<script src="{% static '/jsx/useProfileForm.jsx' %}" type="text/babel"></script>
+<script type="text/babel">
+    $(".user-info").click(() => {
+        $("#updateUserInfo").slideDown();
+        document.querySelector("#updateUserInfo").classList.remove("fade");
+        document.querySelector("#updateUserInfo").classList.remove("fade");
+        $("#updateUserInfo").css("display", "initial")
+        document.querySelector(".main-content").classList.add("backdrop-filter");
+
+    });
+
+    $(".cancel-btn").click(() => {
+        document.querySelector("#updateUserInfo").classList.add("fade");
+        document.querySelector(".modal-dialog-centered").classList.add("fade");
+        $(".modal-dialog-centered").css("display", "none")
+        document.querySelector(".main-content").classList.remove("backdrop-filter");
+    });
+
+    $(".submit-new-user-info").click(() => {
+        document.querySelector("#updateUserInfo").classList.add("fade");
+        $("#updateUserInfo").css("display", "none")
+        document.querySelector(".main-content").classList.remove("backdrop-filter");
+    });
+    /* data passage from django to react */
+    renderForm("{{request.user}}", "{{request.user.id}}", "{{csrf_token}}");
+</script>

@@ -1,0 +1,13 @@
+{% load static %}
+{% if request.user.is_authenticated%}
+<div id="tabContent"></div>
+{% else %}
+<a href="{% url 'register' %}">
+    <div class="tabContent"></div>
+</a>
+{% endif %}
+<script type="text/babel" src="{% static 'jsx/tabContent.jsx' %}"></script>
+<script type="text/babel">
+    renderTabContent("{{csrf_token}}", "{{request.user.id}}")
+</script>
+<!--/ End Single Tab -->

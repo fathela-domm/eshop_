@@ -1,0 +1,41 @@
+{% extends 'eshop_ui/base.html'%}
+{% load static %}
+{% block content %}
+
+{% include 'eshop_ui/ui_ux/landing/slider_area.html' %}
+{% include 'eshop_ui/ui_ux/landing/small_banner.html' %}
+
+<!-- Start Product Area -->
+<div class="product-area section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="section-title">
+					<h2>Trending Item</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="product-info">
+					<div class="nav-main">
+						{% include 'eshop_ui/ui_ux/landing/products_area/tab_nav.html' %}
+					</div>
+					<div class="tab-content" id="myTabContent">
+						{% include 'eshop_ui/ui_ux/landing/products_area/tab1_single_tab.html' %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Product Area -->
+
+{% include 'eshop_ui/ui_ux/landing/medium_banner.html' %}
+{% include 'eshop_ui/ui_ux/landing/most_popular_area.html' %}
+{% include 'eshop_ui/ui_ux/landing/service_area.html' %}
+{% include 'eshop_ui/ui_ux/landing/eshop_newsletter.html' %}
+{% include 'eshop_ui/ui_ux/landing/modal.html' %}
+{% include 'eshop_ui/ui_ux/landing/countdown_area.html' %}
+{% include 'eshop_ui/ui_ux/footer.html' %}
+{% endblock %}

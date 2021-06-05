@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Recent Buyers</h4>
+        <a class="heading-elements-toggle">
+            <i class="fa fa-ellipsis-v font-medium-3"></i>
+        </a>
+        <div class="heading-elements">
+            <ul class="list-inline mb-0">
+                <li>
+                    <a data-action="reload">
+                        <i class="ft-rotate-cw"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-content">
+        <div id="recent-buyers" class="media-list">
+            {% for user in users %}
+            {% if user.products_bought %}
+            <a href="#" class="media border-0">
+                <div class="media-left pr-1">
+                    <span class="avatar avatar-md avatar-online">
+                        <img class="media-object rounded-circle" src="{{user.image.url}}"
+                            alt="Generic placeholder image" />
+                        <i></i>
+                    </span>
+                </div>
+                <div class="media-body w-100">
+                    <span class="list-group-item-heading">{{user.username}} </span>
+                    {% for product in products %}
+                    {% for p_bought in user.products_bought %}
+                    {% if p_bought.product_id == product.id %}
+                    <ul class="list-unstyled users-list m-0 float-right">
+                        <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="{{product.name}}"
+                            class="avatar avatar-sm pull-up">
+                            <img class=" media-object rounded-circle no-border-top-radius no-border-bottom-radius"
+                                src="{{product.image.url}}" alt="Avatar" />
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                    <p class="list-group-item-text mb-0">
+                        <span class="blue-grey lighten-2 font-small-3"> #{{user.first_name}} </span>
+                    </p>
+                </div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

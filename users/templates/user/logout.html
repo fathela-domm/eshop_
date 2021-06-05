@@ -1,0 +1,17 @@
+{% extends 'user/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="jumbotron">
+    <h3 class="white-important">You've been logged out</h3>
+    <div class="pt-3">
+        <small class="text-primary">
+            <a class="ml-2" href="{% url 'login' %}">
+                <span class="text-primary"> Login again? Login</span>
+            </a><br>
+            <a class="ml-2" href="/">
+                <span class="text-primary">Go Home? Click Me</span>
+            </a>
+        </small>
+    </div>
+</div>
+{% endblock %}

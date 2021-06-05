@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card pdct-card">
+            <div class="card-header">
+                <h4 class="card-title">Product Promotion</h4>
+                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <a href="/add_promo">
+                            <li><button class="btn-outline-info btn add-pdct">Add Promo</button></li>
+                        </a>
+                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                        <li><a data-action="reload" id="reloadCategories"><i class="ft-rotate-cw"></i></a></li>
+                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                        <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content collapse show mt-2">
+                <div class="table-responsive" id="promoTable">
+                    <!-- table is rendered using jsx -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../../static/jsx/promoTable.jsx" type="text/babel"></script>
+
+<script type="text/babel">
+    renderPromoTable("{{request.user}}", "{{request.user.id}}", "{{csrf_token}}");
+</script>

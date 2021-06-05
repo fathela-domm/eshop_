@@ -1,0 +1,37 @@
+{% extends 'eshop_ui/base.html'%}
+{% load static %}
+{% block content %}
+
+<!-- Preloader -->
+<div class="preloader">
+	<div class="preloader-inner">
+		<div class="preloader-icon">
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+</div>
+<!-- End Preloader -->
+<!-- Breadcrumbs -->
+{% include 'eshop_ui/ui_ux/shop_grid/breadcrumbs.html' %}
+<!-- End Breadcrumbs -->
+<!-- Shopping Cart -->
+<div id="shoppingCart"></div>
+<!--End of Cart  -->
+
+<!-- Start Shop Newsletter  -->
+{% include 'eshop_ui/ui_ux/landing/eshop_newsletter.html' %}
+<!-- End Shop Newsletter -->
+
+<!-- Modal -->
+{% include 'eshop_ui/ui_ux/landing/modal.html' %}
+<!-- Modal end -->
+
+<!-- Start Footer Area -->
+{% include 'eshop_ui/ui_ux/footer.html' %}
+<!-- /End Footer Area -->
+<script type="text/babel" src="{%static 'jsx/shoppingCart.jsx'%}"></script>
+<script type="text/babel">
+	renderShoppingCart("{{csrf_token}}", "{{request.user.id}}");
+</script>
+{% endblock %}
